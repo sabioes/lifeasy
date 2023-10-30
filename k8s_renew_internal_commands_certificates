@@ -1,0 +1,23 @@
+1: SSH to the plane node.
+2: To check certificates, run this command: 
+  "kubeadm certs check-expiration"
+3: Backup old certificates:
+  "cp -R /etc/kubernetes/ssl /etc/kubernetes/ssl.backup"
+  "cp /etc/kubernetes/admin.conf /etc/kubernetes/admin.conf.backup"
+  "cp /etc/kubernetes/controller-manager.conf /etc/kubernetes/controller-manager.conf.backup"
+  "cp /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.backup"
+  "cp /etc/kubernetes/scheduler.conf /etc/kubernetes/scheduler.conf.backup"
+4: Re-set enviroment variable $KUBECONFIG:
+  "export KUBECONFIG=<PATH_KUBE_CONFIG>
+5: To renew all certificates, run the following command:
+  "kubeadm certs renew all"
+6: Copy the new config to .kube/config folder:
+  "sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config"
+7: Delete Support Pods for K8s:
+  "kubectl -n kube-system delete pod -l "component=kube-apiserver""
+  "kubectl -n kube-system delete pod -l "component=kube-controller-manager""
+  "kubectl -n kube-system delete pod -l "component=kube-scheduler""
+  "kubectl -n kube-system delete pod -l "component=etcd""
+8: Reboot the plane node.
+9: Check again the certificates with command:
+  "kubeadm certs check-expiration"
