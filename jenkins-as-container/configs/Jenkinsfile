@@ -6,10 +6,9 @@ pipeline {
 
         stage('Deploy - Staging') {
             steps {
-                dir ('jenkins-as-container/projects') {
-                    sh './deploy staging'
-                    sh './deploy run-smoke-tests'
-                }
+                cd ../projects
+                sh './deploy staging'
+                sh './deploy run-smoke-tests'
             }
         }
 
@@ -21,9 +20,8 @@ pipeline {
 
         stage('Deploy - Production') {
             steps {
-                dir ('jenkins-as-container/projects') {
-                    sh './deploy production'
-                }
+                cd ../projects
+                sh './deploy production'
             }
         }
     }
