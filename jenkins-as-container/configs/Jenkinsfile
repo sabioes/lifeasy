@@ -6,7 +6,7 @@ pipeline {
 
         stage('Deploy - Staging') {
             steps {
-                sh 'cd jenkins-as-container/projects'
+                sh 'chmod a+rx jenkins-as-container/projects/deploy.sh'
                 sh './jenkins-as-container/projects/deploy.sh staging'
                 //sh './deploy.sh run-smoke-tests'
                 //sh 'pwd'
