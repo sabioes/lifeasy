@@ -7,8 +7,8 @@ pipeline {
         stage('Deploy - Staging') {
             steps {
                 cd ../projects
-                sh './deploy staging'
-                sh './deploy run-smoke-tests'
+                sh './deploy.sh staging'
+                sh './deploy.sh run-smoke-tests'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy - Production') {
             steps {
                 cd ../projects
-                sh './deploy production'
+                sh './deploy.sh production'
             }
         }
     }
