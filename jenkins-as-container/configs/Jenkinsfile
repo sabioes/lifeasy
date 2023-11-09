@@ -21,7 +21,7 @@ pipeline {
 
         stage('Deploy - Production') {
             steps {
-                cd ../projects
+                sh 'cd ../projects'
                 sh './deploy.sh production'
             }
         }
