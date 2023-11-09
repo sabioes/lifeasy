@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy - Production') {
             steps {
                 sh 'cd jenkins-as-container/projects'
-                //sh './deploy.sh production'
+                sh './deploy.sh production'
             }
         }
     }
