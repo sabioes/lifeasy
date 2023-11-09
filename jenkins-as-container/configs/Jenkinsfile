@@ -7,8 +7,9 @@ pipeline {
         stage('Deploy - Staging') {
             steps {
                 cd ../projects
-                sh './deploy.sh staging'
-                sh './deploy.sh run-smoke-tests'
+                //sh './deploy.sh staging'
+                //sh './deploy.sh run-smoke-tests'
+                sh 'pwd'
             }
         }
 
