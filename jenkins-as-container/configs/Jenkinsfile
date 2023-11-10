@@ -8,13 +8,11 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: '*/JJNGC_1.1.0-00_Dev332']], 
                     doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[
-                        $class: 'RelativeTargetDirectory',
-                        relativeTargetDir: 'deploy-scripts']],
+                    extensions: [],
                     submoduleCfg: [], 
                     userRemoteConfigs: [[
                         credentialsId: 'ad_werum_user',
-                        url: 'https://bitbucket.werum.net/scm/jjngc/com.werum.jj.kxs.deployment.helm.git']]])
+                        url: 'git@bitbucket.werum.net:7999/jjngc/com.werum.jj.kxs.deployment.helm.git']]])
 
                 sh 'chmod a+rx jenkins-as-container/projects/deploy.sh'
                 sh './jenkins-as-container/projects/deploy.sh staging'
