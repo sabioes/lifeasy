@@ -3,7 +3,7 @@ pipeline {
     agent any
     stages {
         /* "Build" and "Test" stages omitted */
-        stage('Deploy - Staging') {
+        stage('Checkout Deployment Code') {
             steps {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: '*/JJNGC_1.1.0-00_Dev332']], 
@@ -13,7 +13,7 @@ pipeline {
                         relativeTargetDir: 'deploy-scripts']],
                     submoduleCfg: [], 
                     userRemoteConfigs: [[
-                        credentialsId: '',
+                        credentialsId: 'ad_werum_user',
                         url: 'https://bitbucket.werum.net/scm/jjngc/com.werum.jj.kxs.deployment.helm.git']]])
 
                 sh 'chmod a+rx jenkins-as-container/projects/deploy.sh'
